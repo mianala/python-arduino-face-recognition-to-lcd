@@ -1,10 +1,11 @@
 from serial import Serial
 import time
 
-# windows
 # connecting to the arduino
-display = Serial(port='COM3', baudrate=9600, timeout=.1)
-
+# on my windows
+# display = Serial(port='COM3', baudrate=9600, timeout=.1)
+# on my mac
+display = Serial('/dev/tty.usbmodem141201')  # open serial port
 print(display.name)
 time.sleep(4)
 

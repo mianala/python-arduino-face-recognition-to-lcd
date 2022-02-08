@@ -2,9 +2,14 @@ import face_recognition
 import sys
 import cv2
 import numpy as np
+from serial import Serial
+import time
 
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
+
+# initializing arduino port
+display = Serial('/dev/tty.usbmodem141201')  # open serial port
 
 # Load a sample picture and learn how to recognize it.
 # mianala_image = face_recognition.load_image_file("mianala.jpg")
@@ -33,6 +38,8 @@ known_face_names = [
     "Finaritra"
 ]
 
+faces = []
+
 # Initialize some variables
 face_locations = []
 face_encodings = []
@@ -58,6 +65,7 @@ while True:
 
         face_names = []
         for face_encoding in face_encodings:
+
             # See if the face is a match for the known face(s)
             matches = face_recognition.compare_faces(
                 known_face_encodings, face_encoding)
@@ -78,6 +86,14 @@ while True:
             face_names.append(name)
 
     process_this_frame = not process_this_frame
+
+    if(faces != face_names):
+        faces = face_names
+        print(face_names)
+        if len(faces) == 0:
+            display.write(b"Tsy hitako")
+        else:
+            display.write(bytes(faces[0], encoding="utf-8"))
 
     # Display the results
     for (top, right, bottom, left), name in zip(face_locations, face_names):
