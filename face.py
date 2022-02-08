@@ -7,12 +7,12 @@ video_capture = cv2.VideoCapture(0)
 
 # Load a sample picture and learn how to recognize it.
 # ivan_image = face_recognition.load_image_file("ivan.jpg")
-ivan_image = face_recognition.load_image_file("images/train/Ivan/1.jpg")
+ivan_image = face_recognition.load_image_file("images/train/Mianala/1.jpg")
 ivan_face_encoding = face_recognition.face_encodings(ivan_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
 # maja_image = face_recognition.load_image_file("maja.jpg")
-maja_image = face_recognition.load_image_file("images/train/Maja/3.jpg")
+maja_image = face_recognition.load_image_file("images/train/Finaritra/1.jpg")
 maja_face_encoding = face_recognition.face_encodings(maja_image)[0]
 
 # Create arrays of known face encodings and their names
