@@ -1,4 +1,5 @@
 import face_recognition
+import sys
 import cv2
 import numpy as np
 
@@ -6,23 +7,30 @@ import numpy as np
 video_capture = cv2.VideoCapture(0)
 
 # Load a sample picture and learn how to recognize it.
-# ivan_image = face_recognition.load_image_file("ivan.jpg")
-ivan_image = face_recognition.load_image_file("images/train/Mianala/1.jpg")
-ivan_face_encoding = face_recognition.face_encodings(ivan_image)[0]
+# mianala_image = face_recognition.load_image_file("mianala.jpg")
+try:
+    mianala_image = face_recognition.load_image_file(
+        "images/train/Mianala/1.jpg")
+except IndexError as e:
+    print(e)
+    sys.exit(1)
+
+mianala_face_encoding = face_recognition.face_encodings(mianala_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
-# maja_image = face_recognition.load_image_file("maja.jpg")
-maja_image = face_recognition.load_image_file("images/train/Finaritra/1.jpg")
-maja_face_encoding = face_recognition.face_encodings(maja_image)[0]
+# finaritra_image = face_recognition.load_image_file("finaritra.jpg")
+finaritra_image = face_recognition.load_image_file(
+    "images/train/Finaritra/1.jpg")
+finaritra_face_encoding = face_recognition.face_encodings(finaritra_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    ivan_face_encoding,
-    maja_face_encoding
+    mianala_face_encoding,
+    finaritra_face_encoding
 ]
 known_face_names = [
-    "Ivan",
-    "Maja"
+    "Mianala",
+    "Finaritra"
 ]
 
 # Initialize some variables
