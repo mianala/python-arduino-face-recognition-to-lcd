@@ -13,29 +13,43 @@ display = Serial('/dev/tty.usbmodem141201')  # open serial port
 
 # Load a sample picture and learn how to recognize it.
 # mianala_image = face_recognition.load_image_file("mianala.jpg")
-try:
-    mianala_image = face_recognition.load_image_file(
-        "images/train/Mianala/1.jpg")
-except IndexError as e:
-    print(e)
-    sys.exit(1)
+
+mianala_image = face_recognition.load_image_file(
+    "images/train/Mianala/1.jpg")
+eric_image = face_recognition.load_image_file("images/train/Eric/1.jpg")
+tojo_image = face_recognition.load_image_file("images/train/Tojo/1.jpg")
+fitahiana_image = face_recognition.load_image_file(
+    "images/train/Fitahiana/1.jpg")
+soa_image = face_recognition.load_image_file("images/train/Soa/1.jpg")
+finaritra_image = face_recognition.load_image_file(
+    "images/train/Finaritra/1.jpg")
 
 mianala_face_encoding = face_recognition.face_encodings(mianala_image)[0]
+eric_face_encoding = face_recognition.face_encodings(eric_image)[0]
+tojo_face_encoding = face_recognition.face_encodings(tojo_image)[0]
+fitahiana_face_encoding = face_recognition.face_encodings(fitahiana_image)[0]
+soa_face_encoding = face_recognition.face_encodings(soa_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
 # finaritra_image = face_recognition.load_image_file("finaritra.jpg")
-finaritra_image = face_recognition.load_image_file(
-    "images/train/Finaritra/1.jpg")
 finaritra_face_encoding = face_recognition.face_encodings(finaritra_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     mianala_face_encoding,
-    finaritra_face_encoding
+    finaritra_face_encoding,
+    eric_face_encoding,
+    tojo_face_encoding,
+    fitahiana_face_encoding,
+    soa_face_encoding,
 ]
 known_face_names = [
-    "Mianala",
-    "Finaritra"
+    "Loharano",
+    "Finaritra",
+    "Eric",
+    "Tojo",
+    "Fitahiana",
+    "Soa",
 ]
 
 faces = []
